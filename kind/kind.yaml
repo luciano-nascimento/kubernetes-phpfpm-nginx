@@ -1,0 +1,15 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+  extraMounts:
+  #set path of folder that has shared files
+  #if you are in mac your windows share thebase folder in docker desktop
+  - hostPath: /Users/lucianonascimento/lab/kubernetes-nginx-phpfpm-app
+    containerPath: /files
+  extraPortMappings:
+  #bind kind container port to your host
+  - containerPort: 30000
+    hostPort: 30000
+    listenAddress: "0.0.0.0" # Optional, defaults to "0.0.0.0"
